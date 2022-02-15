@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./App.css";
+import { Button } from "react-bootstrap";
 
 function App(): JSX.Element {
     return (
@@ -15,9 +16,9 @@ function App(): JSX.Element {
                 automatically reload. Hello World
             </p>
             <div>
-                <button onClick={() => console.log("Hello World!")}>
+                <Button onClick={() => console.log("Hello World!")}>
                     Log Hello World
-                </button>
+                </Button>
             </div>
             <Container>
                 <Row>
@@ -31,8 +32,21 @@ function App(): JSX.Element {
                                 height="300"
                             />
                         </div>
+                        <div className="rectangles"></div>
                     </Col>
-                    <Col>Second Column</Col>
+                    <Col>
+                        Second Column
+                        <div>
+                            <ul>
+                                <li>Ratatouille is a pretty good movie</li>
+                                <li>My friend likes pineapples and mangos</li>
+                                <li>
+                                    Erica likes baking brownies on the weekends
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="rectangles"></div>
+                    </Col>
                 </Row>
             </Container>
         </div>

@@ -28,8 +28,7 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    //this does not work, find differnet solution
-    const toNum = numbers.map(Number);
+    const toNum = numbers.map((numbers: string): number => Number(numbers));
     return toNum;
 }
 
@@ -50,6 +49,7 @@ export const removeDollars = (amounts: string[]): number[] => {
  * in question marks ("?").
  */
 export const shoutIfExclaiming = (messages: string[]): string[] => {
+    //does not work
     const noQuestion = messages.filter(
         (messages: string): boolean => messages[-1] !== "?"
     );
@@ -76,7 +76,13 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    return false;
+    if (colors.length === 0) {
+        return true;
+    }
+    return colors.every(
+        (colors: string): boolean =>
+            colors === "red" || colors === "green" || colors === "blue"
+    );
 }
 
 /**

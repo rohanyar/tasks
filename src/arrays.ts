@@ -51,11 +51,14 @@ export const removeDollars = (amounts: string[]): number[] => {
 export const shoutIfExclaiming = (messages: string[]): string[] => {
     //does not work
     const noQuestion = messages.filter(
-        (messages: string): boolean => messages[-1] !== "?"
+        (messages: string): boolean => messages[messages.length - 1] !== "?"
     );
-    const newMessages = noQuestion.map((messages: string): string =>
-        messages[-1] === "!" ? messages.toUpperCase() : void 0
-    );
+    const newMessages = noQuestion.map((messages: string): string => {
+        return messages[messages.length - 1] === "!"
+            ? messages.toUpperCase()
+            : messages;
+    });
+    console.log(newMessages.toString());
     return newMessages;
 };
 
@@ -96,7 +99,6 @@ export function makeMath(addends: number[]): string {
     if (addends.length === 0) {
         return "0=0";
     }
-    
     return "";
 }
 

@@ -138,7 +138,6 @@ export function injectPositive(value: number[]): number[] {
             0
         );
         values.push(sum);
-        console.log(values);
         return values;
     }
     if (firstNeg !== -1) {
@@ -148,7 +147,7 @@ export function injectPositive(value: number[]): number[] {
             0
         );
         values.splice(firstNeg + 1, 0, sum);
-        console.log(values);
         return values;
     }
+    return [];
 }

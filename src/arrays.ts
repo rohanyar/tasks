@@ -1,3 +1,5 @@
+import { validateLocaleAndSetLanguage } from "typescript";
+
 /**
  * Consume an array of numbers, and return a new array containing
  * JUST the first and last number. If there are no elements, return
@@ -28,7 +30,9 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    const toNum = numbers.map((numbers: string): number => Number(numbers));
+    const toNum = numbers.map((num: string): number =>
+        !Number.isNaN(Number(num)) ? Number(num) : 0
+    );
     return toNum;
 }
 
@@ -40,7 +44,16 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    return [];
+    const noDollar = amounts.map((nAmounts: string): string => {
+        if (nAmounts.includes("$")) {
+            nAmounts = nAmounts.replace("$", "");
+        }
+        return nAmounts;
+    });
+    const convertNum = noDollar.map((num: string): number =>
+        !Number.isNaN(Number(num)) ? Number(num) : 0
+    );
+    return convertNum;
 };
 
 /**
@@ -58,7 +71,6 @@ export const shoutIfExclaiming = (messages: string[]): string[] => {
             ? messages.toUpperCase()
             : messages;
     });
-    console.log(newMessages.toString());
     return newMessages;
 };
 
@@ -99,7 +111,14 @@ export function makeMath(addends: number[]): string {
     if (addends.length === 0) {
         return "0=0";
     }
-    return "";
+    const total = addends.reduce((sum: number, val: number) => sum + val, 0);
+    const stringAddeneds = addends.map((str: number): string => str.toString());
+    const strRep = stringAddeneds.reduce(
+        (totalStr: string, currStr: string) => totalStr + currStr + "+",
+        ""
+    );
+    const newRep = strRep.substring(0, strRep.length - 1);
+    return total + "=" + newRep;
 }
 
 /**
@@ -111,6 +130,32 @@ export function makeMath(addends: number[]): string {
  * For instance, the array [1, 9, -5, 7] would become [1, 9, -5, 10, 7]
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
-export function injectPositive(values: number[]): number[] {
-    return [];
+export function injectPositive(value: number[]): number[] {
+    const values = [...value]; //ask why i need this (references?)
+    const firstNeg = values.findIndex((num: number): boolean => num < 0);
+    if (firstNeg === -1) {
+        //no negative values found
+        const sum = values.reduce(
+            (currSum: number, val: number) => currSum + val,
+            0
+        );
+        values.push(sum);
+        console.log(values);
+        return values;
+    }
+    if (firstNeg !== -1) {
+        const tempVals = values.slice(0, firstNeg);
+        const sum = tempVals.reduce(
+            (currSum: number, val: number) => currSum + val,
+            0
+        );
+        //const clonedVals = [...values];
+        //clonedVals.splice(firstNeg + 1, 0, sum);
+        //console.log(clonedVals.toString());
+        //return clonedVals;
+        values.splice(firstNeg + 1, 0, sum);
+        console.log(values);
+        return values;
+        // return values;
+    }
 }

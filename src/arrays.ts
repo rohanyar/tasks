@@ -147,13 +147,8 @@ export function injectPositive(value: number[]): number[] {
             (currSum: number, val: number) => currSum + val,
             0
         );
-        //const clonedVals = [...values];
-        //clonedVals.splice(firstNeg + 1, 0, sum);
-        //console.log(clonedVals.toString());
-        //return clonedVals;
         values.splice(firstNeg + 1, 0, sum);
         console.log(values);
         return values;
-        // return values;
     }
 }

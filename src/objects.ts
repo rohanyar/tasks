@@ -1,3 +1,4 @@
+import { stringify } from "querystring";
 import { Question, QuestionType } from "./interfaces/question";
 
 /**
@@ -59,7 +60,8 @@ export function isValid(question: Question, answer: string): boolean {
  * name "My First Question" would become "9: My First Q".
  */
 export function toShortForm(question: Question): string {
-    return "";
+    const result = question.id + ": " + question.name.slice(0, 10);
+    return result;
 }
 
 /**
@@ -80,7 +82,16 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
-    return "";
+    const name = "# " + question.name;
+    const body = "\n" + question.body;
+    if (question.type === "multiple_choice_question") {
+        const extra = "\n- ";
+        const options = question.options.reduce(
+            (next: string, curr: string) => next + "\n- " + curr
+        );
+        return name + body + extra + options;
+    }
+    return name + body;
 }
 
 /**
@@ -88,7 +99,8 @@ export function toMarkdown(question: Question): string {
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    return question;
+    const newQuestionName = { ...question, name: newName };
+    return newQuestionName;
 }
 
 /**

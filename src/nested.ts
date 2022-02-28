@@ -37,7 +37,14 @@ export function findQuestion(
     questions: Question[],
     id: number
 ): Question | null {
-    return null;
+    const findQues: Question | undefined = questions.find(
+        (check: Question): boolean => check.id === id
+    );
+    if (findQues === undefined) {
+        return null;
+    } else {
+        return findQues;
+    }
 }
 
 /**

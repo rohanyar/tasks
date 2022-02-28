@@ -52,7 +52,10 @@ export function findQuestion(
  * with the given `id`.
  */
 export function removeQuestion(questions: Question[], id: number): Question[] {
-    return [];
+    const remQues = questions.filter(
+        (check: Question): boolean => check.id !== id
+    );
+    return remQues;
 }
 
 /***
@@ -60,21 +63,33 @@ export function removeQuestion(questions: Question[], id: number): Question[] {
  * questions, as an array.
  */
 export function getNames(questions: Question[]): string[] {
-    return [];
+    const quesNames = questions.map((check: Question): string => check.name);
+    return quesNames;
 }
 
 /***
  * Consumes an array of questions and returns the sum total of all their points added together.
  */
 export function sumPoints(questions: Question[]): number {
-    return 0;
+    const sum = questions.reduce(
+        (currSum: number, val: Question) => currSum + val.points,
+        0
+    );
+    return sum;
 }
 
 /***
  * Consumes an array of questions and returns the sum total of the PUBLISHED questions.
  */
 export function sumPublishedPoints(questions: Question[]): number {
-    return 0;
+    const pubQues = questions.filter(
+        (check: Question): boolean => check.published === true
+    );
+    const sum = pubQues.reduce(
+        (currSum: number, val: Question) => currSum + val.points,
+        0
+    );
+    return sum;
 }
 
 /***

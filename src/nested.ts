@@ -230,9 +230,23 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ) {
-    return [];
+    return questions.map((check: Question): Question => {
+        if (check.id === targetId) {
+            if (targetOptionIndex === -1) {
+                return { ...check, options: [...check.options, newOption] };
+            } else {
+                const nOptions = [...check.options];
+                nOptions.splice(targetOptionIndex, 1, newOption);
+                return {
+                    ...check,
+                    options: nOptions
+                };
+            }
+        } else {
+            return { ...check };
+        }
+    });
 }
-
 /***
  * Consumes an array of questions, and produces a new array based on the original array.
  * The only difference is that the question with id `targetId` should now be duplicated, with

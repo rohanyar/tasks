@@ -112,7 +112,11 @@ id,name,options,points,published
  */
 export function toCSV(questions: Question[]): string {
     const header = "id,name,options,points,published\n";
-    return "";
+    const toCsv = questions.map(
+        (check: Question): string =>
+            `${check.id},${check.name},${check.options.length},${check.points},${check.published}`
+    );
+    return header + toCsv.join("\n");
 }
 
 /**

@@ -23,6 +23,12 @@ export function CheckAnswer({
                     type="text"
                     value={answer}
                     onChange={updateAnswer}
+                    style={{
+                        width: "fit-content",
+                        display: "-ms-inline-flexbox",
+                        margin: "auto",
+                        textAlign: "left"
+                    }}
                 ></Form.Control>
             </Form.Group>
             <p>{answer === expectedAnswer ? "✔️" : "❌"}</p>

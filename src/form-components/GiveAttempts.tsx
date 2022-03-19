@@ -18,14 +18,14 @@ export function GiveAttempts(): JSX.Element {
                 }}
                 disabled={attempts === 0}
             >
-                Attempt
+                Use
             </Button>
             <Button
                 onClick={() => {
                     setAttempts((prevAttempts: number) => prevAttempts + Give);
                 }}
             >
-                Give
+                Gain
             </Button>
             <Form.Group controlId="requestAttempts">
                 <Form.Label>Request Attempts: </Form.Label>
